@@ -1,0 +1,32 @@
+#! /usr/bin/env sh
+
+##This file is a script which attempts to detect if the repository for which a
+#site is being generated has a static hosting capability.
+
+if [ $(which git) ]; then
+if [ -d ".git" ]; then
+        if [ ! -z "$(git remote -v | grep gitlab | grep push)" ]; then
+                if [ -f ".gitlab-ci.yml" ]; then
+                        if [ grep pages ".gitlab-ci.yml" ]; then
+                                echo ".gitlab-ci.yml detected"
+                                return false
+                        fi
+                else
+                        echo "gitlab-ci.yml not found, returning for now."
+                        return false
+                fi
+        elif [ ! -z "$(git remote -v | grep github | grep push)" ]; then
+                if [ ! -z "$(git branch | grep gh-pages)" ]; then
+                        echo "pages branch detected"
+                        return true
+                fi
+        elif [ ! -z "$(git remote -v | grep bitbucket | grep push)" ]; then
+                echo "bitbucket detected"
+                if [ ! -z "$(git branch | grep gh-pages)" ]; then
+                        echo "Bitbucket is not even started yet. returning for
+                        now."
+                        return false
+                fi
+        fi
+fi
+fi

@@ -1,0 +1,8 @@
+#! /usr/bin/env sh
+
+if [ detect-static-host ]; then
+        echo "detect-static-hosts worked"
+        generate-html
+else
+        echo "no pages branch"
+fi

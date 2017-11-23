@@ -1,0 +1,7 @@
+#! /usr/bin/env sh
+
+MARKDOWN_FILES=$( find . -type f -iname "*.MD")
+
+for md_file in $MARKDOWN_FILES; do
+        markdown $md_file
+done
