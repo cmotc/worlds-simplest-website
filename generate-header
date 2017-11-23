@@ -1,0 +1,16 @@
+#! /usr/bin/env sh
+export STYLE=$(find . -name "*.css")
+export SCRIPT=$(find . -name "*.js")
+echo "<head>"
+echo "    <meta charset=\"utf-8\">"
+echo "    <title>"
+echo -n "    "
+head -n 1 $1
+echo "    </title>"
+for c in $STYLE; do
+        echo "    <link rel=\"stylesheet\" href=\"$STYLE\">"
+done
+for s in $SCRIPT; do
+        echo "    <script src=\"$SCRIPT\"></script>"
+done
+echo "</head>"

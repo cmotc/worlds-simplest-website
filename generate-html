@@ -1,7 +1,12 @@
 #! /usr/bin/env sh
 
-MARKDOWN_FILES=$( find . -type f -iname "*.MD")
+MARKDOWN_FILES=$(find . -type f -iname "*.MD")
 
+#generate-header
+
+echo "<body>"
 for md_file in $MARKDOWN_FILES; do
+        generate-header $md_file
         markdown $md_file
 done
+echo "</body>"
