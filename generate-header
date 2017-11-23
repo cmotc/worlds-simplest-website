@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
 export STYLE=$(find . -name "*.css")
 export SCRIPT=$(find . -name "*.js")
+echo "<!DOCTYPE html>"
+echo "<html>"
 echo "<head>"
 echo "    <meta charset=\"utf-8\">"
 echo "    <title>"
