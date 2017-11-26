@@ -13,7 +13,9 @@ for md_file in $MARKDOWN_FILES; do
                 generate-header $md_file
                 echo "<body>"
         fi
+        echo "<div id=\"content\">"
         markdown $md_file
+        echo "</div>"
         if [ ! -f README.md ]; then
                 echo "</body>"
         fi
