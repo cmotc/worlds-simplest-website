@@ -10,12 +10,18 @@ fi
 
 for md_file in $MARKDOWN_FILES; do
         if [ ! -f README.md ]; then
-                generate-header $md_file
+                generate-header "$md_file"
                 echo "<body>"
         fi
-        echo "<div id=\"content\">"
-        markdown $md_file
-        echo "</div>"
+        if $(echo "$md_file" | grep -iq "sidebar") 2>/dev/null; then
+                echo "<div id=\"sidebar\">"
+                markdown "$md_file"
+                echo "</div>"
+        else
+                echo "<div id=\"content\">"
+                markdown "$md_file"
+                echo "</div>"
+        fi
         if [ ! -f README.md ]; then
                 echo "</body>"
         fi
