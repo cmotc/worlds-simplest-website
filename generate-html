@@ -4,6 +4,7 @@ MARKDOWN_FILES=$(find . -type f -iname "*.MD" | sort)
 
 if [ -f README.md ]; then
         generate-header README.md
+        echo "<body>"
 fi
 
 
@@ -18,3 +19,6 @@ for md_file in $MARKDOWN_FILES; do
         fi
 done
 
+if [ -f README.md ]; then
+        echo "</body>"
+fi
